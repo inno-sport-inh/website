@@ -1,4 +1,4 @@
-name: Build static files and deploy website
+name: Build static files and Deploy
 
 on:
   workflow_dispatch:
@@ -83,6 +83,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           fingerprint: ${{ secrets.SSH_FINGERPRINT }}
           port: ${{ secrets.SSH_PORT }}
+          command_timeout: 30m
           source: "site.tar.gz"
           target: "/tmp/"
 
@@ -94,6 +95,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           fingerprint: ${{ secrets.SSH_FINGERPRINT }}
           port: ${{ secrets.SSH_PORT }}
+          command_timeout: 30m
           script: |
             set -e
             mkdir -p /var/www/sport.innohassle.ru
